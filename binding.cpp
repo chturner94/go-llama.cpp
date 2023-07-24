@@ -631,11 +631,11 @@ void* load_model(const char *fname, int n_ctx, int n_seed, bool memory_f16, bool
     void* res = nullptr;
     try {
 
-        struct llama_model * model = llama_load_model_from_file(fname, &lparams);
+        struct llama_model * model = llama_load_model_from_file(fname, lparams);
         if (!model) {
             return nullptr;
         }
-        struct llama_context * ctx = llama_new_context_with_model(model, &lparams);
+        struct llama_context * ctx = llama_new_context_with_model(model, lparams);
         res = ctx;
     } catch(std::runtime_error& e) {   
         fprintf(stderr, "failed %s",e.what());
